@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Partidas Rankeadas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            text-align: center;
+            margin: 50px;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* Cores de fundo conforme o nível */
+        body[data-nivel="Ferro"] {
+            background-color: #6c757d;
+        }
+
+        body[data-nivel="Bronze"] {
+            background-color: #cd7f32;
+        }
+
+        body[data-nivel="Prata"] {
+            background-color: #c0c0c0;
+        }
+
+        body[data-nivel="Ouro"] {
+            background-color: #ffd700;
+        }
+
+        body[data-nivel="Diamante"] {
+            background-color: #b9f2ff;
+        }
+
+        body[data-nivel="Lendário"] {
+            background-color: #ffd700;
+            color: #800080;
+        }
+
+        body[data-nivel="Imortal"] {
+            background-color: #800080;
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body data-nivel="Ouro">
+    <h1>Calculadora de Partidas Rankeadas</h1>
+
+    <script>
+        function calcularSaldoRankeadas(vitorias, derrotas) {
+            const saldoVitorias = vitorias - derrotas;
+            let nivel;
+
+            if (vitorias < 10) {
+                nivel = "Ferro";
+            } else if (vitorias <= 20) {
+                nivel = "Bronze";
+            } else if (vitorias <= 50) {
+                nivel = "Prata";
+            } else if (vitorias <= 80) {
+                nivel = "Ouro";
+            } else if (vitorias <= 90) {
+                nivel = "Diamante";
+            } else if (vitorias <= 100) {
+                nivel = "Lendário";
+            } else {
+                nivel = "Imortal";
+            }
+
+            const mensagem = `O Herói tem um saldo de ${saldoVitorias} e está no nível de ${nivel}`;
+            document.write("<p>" + mensagem + "</p>");
+
+            // Define o atributo data-nivel no body para ajustar a cor de fundo
+            document.body.setAttribute("data-nivel", nivel);
+        }
+
+        // Exemplo de uso
+        calcularSaldoRankeadas(75, 20);
+    </script>
+</body>
+</html>
